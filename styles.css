@@ -40,10 +40,65 @@ body {
     background-color: #EDEDED;
 }
 
-#logo {
-    max-width: 100%;    /* Не больше ширины родителя */
-    height: auto;       /* Сохраняет пропорции */
-    display: block;     /* Убирает лишние отступы */
+#popular {
+    display: flex;
+    height: 1000px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#popular_previous {
+    position: absolute;
+    left: 50px;
+    height: 100px;
+    width: 100px;
+    z-index: 10;
+    background: none;
+    border: none;
+    border-radius: 100%;
+}
+#popular_previous:hover {
+    background:#f0f0f0;
+}
+
+#popular_next {
+    position: absolute;
+    right: 50px;
+    height: 100px;
+    width: 100px;
+    z-index: 10;
+    background: none;
+    border: none;
+    border-radius: 100%;
+}
+#popular_next:hover {
+    background:#f0f0f0;
+}
+
+#popular_selector {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 80%; /* теперь контейнер занимает 80% ширины родителя */
+}
+
+.popular_card {
+    flex: 0 0 calc(33.333% - 13.33px); /* 3 карточки, учитывая gap */
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    height: 300px; /* задаём высоту для наглядности */
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+    display: block;
     align-self: center;
 }
 

@@ -8,7 +8,7 @@
 </head>
 <body>
     <nav class="navigation">
-        <img src="media/logo.png" alt="Логотип" id="logo">
+        <img src="media/logo.png" alt="Логотип" class="image">
         <div class="navigation_buttons_container">
             <button class="navigation_buttons">Модельный ряд</button>
             <button class="navigation_buttons">Конфигуратор</button>
@@ -18,7 +18,21 @@
     </nav>
     <main>
         <section id="sales"></section>
-        <section id="popular"></section>
+        <section id="popular">
+            <button id="popular_previous">&#10094;</button>
+            <div id="popular_selector">
+                <div class="popular_card">
+                    <img src="media/card2.png" alt="Подробнее" class="image">
+                </div>
+                <div class="popular_card">
+                    <img src="media/img1.png" alt="Подробнее" class="image">
+                </div>
+                <div class="popular_card">
+                    <img src="media/img2.png" alt="Подробнее" class="image">
+                </div>
+            </div>
+            <button id="popular_next">&#10095;</button>
+        </section>
         <section id="service"></section>
         <section id="consultation"></section>
     </main>

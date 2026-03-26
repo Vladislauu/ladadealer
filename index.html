@@ -8,7 +8,7 @@
 </head>
 <body>
     <nav class="navigation">
-        <img src="media/logo.png" alt="Логотип" class="scaling_image">
+        <img src="media/logo.png" alt="Логотип" class="image--scaling">
         <div class="navigation__buttons">
             <button class="button--sharp">Модельный ряд</button>
             <button class="button--sharp">Конфигуратор</button>
@@ -16,8 +16,24 @@
             <button class="button--sharp">Личный кабинет</button>
         </div>
     </nav>
-    <main>
-        <section class="sales"></section>
+    <section class="sales">
+            <button class="button--left">&#10094;</button>
+            <div class="sales__cards">
+                <div id="lada2107" class="sales__card">
+                    <img src="media/sale.jpg" class="image--fullfill">
+                    <div class="text--title">LADA 2107 от 120 000 РУБ.</div>
+                </div>
+                <div id="lada2107" class="sales__card">
+                    <img src="media/sale.jpg" class="image--fullfill">
+                    <div class="text--title">LADA 2107 от 120 000 РУБ.</div>
+                </div>
+                <div id="lada2107" class="sales__card">
+                    <img src="media/sale.jpg" class="image--fullfill">
+                    <div class="text--title">LADA 2107 от 120 000 РУБ.</div>
+                </div>
+            </div>
+            <button class="button--next">&#10095;</button>
+        </section>
         <section class="popular">
             <button class="button--left">&#10094;</button>
             <div class="popular__buttons">
@@ -35,9 +51,9 @@
         </section>
         <section class="service"></section>
         <section class="consultation"></section>
-    </main>
     <footer class="footer">
 
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

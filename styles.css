@@ -3,18 +3,65 @@ body {
     padding: 0;
 }
 
+.button--left {
+    position: absolute;
+    left: 50px;
+    height: 100px;
+    width: 100px;
+    z-index: 10;
+    opacity: 0.2;
+    background:#f0f0f0;
+    border: none;
+    border-radius: 100%;
+}
+.button--left:hover {
+    opacity: 1;
+}
+
+.button--next {
+    position: absolute;
+    right: 50px;
+    height: 100px;
+    width: 100px;
+    z-index: 10;
+    background:#f0f0f0;
+    opacity: 0.2;
+    border: none;
+    border-radius: 100%;
+}
+.button--next:hover {
+    opacity: 1;
+}
+
+.text--title {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: absolute;
+    text-align: left;
+    left: 5%;
+    top: 70%;
+    color: #ffffff;
+    line-height: 80px;
+    font-size: 70px;
+    font-weight: lighter;
+}
+
 .image--scaling {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    display: block;
-    align-self: center;
+}
+
+.image--fullfill {
+    width: 100%;
+    height: 100%;
 }
 
 .navigation {
+    padding: 0 10%;
     display: grid;
     grid-template-columns: 8% 92%;
+    align-items: center;
     border: 5px;
-    height: 130px;
+    height: 90px;
     background-color: #ffffff;
 }
 
@@ -28,8 +75,8 @@ body {
 .button--sharp {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #626060;
-    line-height: 44px;
-    font-size: 30px;
+    line-height: 40px;
+    font-size: 20px;
     font-weight: bold;
     height: 100%;
     width: 100%;
@@ -48,40 +95,12 @@ body {
 }
 
 .popular {
+    padding: 1% 5%;
     display: flex;
-    height: 1000px;
     overflow: hidden;
     align-items: center;
     justify-content: center;
     position: relative;
-}
-
-.button--left {
-    position: absolute;
-    left: 50px;
-    height: 100px;
-    width: 100px;
-    z-index: 10;
-    background: none;
-    border: none;
-    border-radius: 100%;
-}
-.button--left:hover {
-    background:#f0f0f0;
-}
-
-.button--next {
-    position: absolute;
-    right: 50px;
-    height: 100px;
-    width: 100px;
-    z-index: 10;
-    background: none;
-    border: none;
-    border-radius: 100%;
-}
-.button--next:hover {
-    background:#f0f0f0;
 }
 
 .popular__buttons {
@@ -90,20 +109,39 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    width: 80%; /* теперь контейнер занимает 80% ширины родителя */
+    width: 100%;
 }
 
 .popular__card {
-    flex: 0 0 calc(33.333% - 13.33px); /* 3 карточки, учитывая gap */
-    display: block;
-    box-sizing: border-box;
-    text-align: center;
-    height: 300px; /* задаём высоту для наглядности */
+    flex: 0 0 30%;
+    overflow: hidden;
+    position: relative;
+    flex-grow: 1;
+    height: 100%;
 }
 
 .sales {
-    height: 1000px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+}
+
+.sales__cards{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.sales__card{
+    flex: 0 0 100%;
+    width: 100%;
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
 }
 
 .cars {

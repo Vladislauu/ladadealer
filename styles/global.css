@@ -44,6 +44,21 @@ body {
     position: relative;
 }
 
+.popular__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+
+    overflow: hidden;
+
+    position: absolute;
+    align-self: center;
+    width: 50%;
+    height: 20%;
+    bottom:5%
+}
+
 .popular__buttons {
     display: flex;
     gap: 20px;
@@ -78,9 +93,8 @@ body {
 }
 
 .sales__card{
-    flex: 0 0 100%;
+    flex: 1 0 100%;
     width: 100%;
-    flex-grow: 1;
     position: relative;
     overflow: hidden;
 }
@@ -92,8 +106,8 @@ body {
 .service {
     padding-left: 15%;
     padding-right: 15%;
-    padding-bottom: 10%;
-    padding-top: 10%;
+    padding-bottom: 3%;
+    padding-top: 3%;
     gap:20px;
     height: 100%;
     display: grid;
@@ -104,6 +118,7 @@ body {
     display: flex;
     flex-direction: column;
     gap:20px;
+    min-width: 0;
 }
 
 .consultation {

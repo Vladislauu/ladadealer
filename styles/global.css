@@ -33,8 +33,9 @@ body {
 }
 
 .popular {
-    padding: 1% 5%;
+    padding: 5% 5%;
     display: flex;
+    flex-direction: column;
     overflow: hidden;
     align-items: center;
     justify-content: center;
@@ -48,12 +49,21 @@ body {
     gap: 20px;
 
     overflow: hidden;
-
-    position: absolute;
-    align-self: center;
     width: 50%;
     height: 20%;
-    bottom:5%
+}
+
+@media (max-width: 768px) {
+    .popular__actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+        overflow: hidden;
+        width: 50%;
+        height: 20%;
+    }
 }
 
 .popular__buttons {
@@ -118,7 +128,7 @@ body {
     min-width: 0;
 }
 
-.footer {
+footer {
     background-color: #EDEDED;
 
     display: flex;
@@ -138,7 +148,14 @@ body {
     overflow: hidden;
 }
 
-.footer__list {
+@media (max-width: 768px) {
+    .footer__lists {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        overflow: hidden;
+    }
 }
 
 .footer__legal {

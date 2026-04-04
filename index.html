@@ -10,9 +10,14 @@
 </head>
 <body>
     <header>
-        <nav class="navigation">
+        <nav>
             <img src="media/logo.png" alt="Логотип" class="image--scaling">
-            <div class="navigation__buttons">
+            <button class="burger" id="burgerBtn" aria-label="Открыть меню">
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+            </button>
+            <div class="navigation__buttons" id="navMenu">
                 <button class="button--sharp">Модельный ряд</button>
                 <button class="button--sharp">Конфигуратор</button>
                 <button class="button--sharp">Авто в наличии</button>

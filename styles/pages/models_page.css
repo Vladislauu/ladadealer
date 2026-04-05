@@ -1,0 +1,31 @@
+@import url('../components/buttons.css');
+@import url('../components/footer.css');
+@import url('../components/images.css');
+@import url('../components/navigation/navigation.css');
+@import url('../components/titles.css');
+
+.models {
+    padding: 2% 15%;
+}
+
+.models__card {
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto auto auto ;
+    grid-template-columns: 50% 50%;
+    overflow: hidden;
+}
+
+.models__options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+@media (max-width: 768px) {
+    .models__card {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+}

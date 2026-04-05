@@ -1,3 +1,10 @@
+@import url('../components/buttons.css');
+@import url('../components/footer.css');
+@import url('../components/images.css');
+@import url('../components/input.css');
+@import url('../components/navigation/navigation.css');
+@import url('../components/titles.css');
+
 body {
     margin: 0;
     padding: 0;

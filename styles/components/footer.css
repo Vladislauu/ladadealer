@@ -1,0 +1,33 @@
+footer {
+    background-color: #EDEDED;
+
+    display: flex;
+    flex-direction: column;
+    padding-top: 5%;
+    padding-bottom:5%;
+    padding-left: 15%;
+    padding-right: 15%;
+    justify-content: space-evenly;
+}
+
+.footer__lists {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .footer__lists {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        overflow: hidden;
+    }
+}
+
+.footer__legal {
+    overflow: hidden;
+}

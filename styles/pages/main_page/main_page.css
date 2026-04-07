@@ -43,16 +43,15 @@ body {
 }
 
 .popular__track {
-    overflow: hidden;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 200%;
 }
 
 .popular__card {
-    flex-basis: calc(100%/3);
+    flex-basis: calc(100%/3/2);
     flex-grow: 1;
     flex-shrink: 0;
     height: 100%;

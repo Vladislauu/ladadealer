@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <link rel="stylesheet" href="styles/pages/main_page.css">
+    <link rel="stylesheet" href="styles/pages/main_page/main_page.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LADA</title>
@@ -42,23 +42,29 @@
             <button class="button--next">&#10095;</button>
         </section>
         <section class="popular">
-            <button class="button--left">&#10094;</button>
-            <div class="popular__buttons">
-                <div class="popular__card">
-                    <img src="media/card2.png" alt="Подробнее" class="image--scaling">
-                </div>
+            <button class="button--left" id="popular__switch--left">&#10094;</button>
+            <div class="popular__track" id="popular__track">
                 <div class="popular__card">
                     <img src="media/img1.png" alt="Подробнее" class="image--scaling">
                 </div>
                 <div class="popular__card">
                     <img src="media/img2.png" alt="Подробнее" class="image--scaling">
                 </div>
+                <div class="popular__card">
+                    <img src="media/card1.png" alt="Подробнее" class="image--scaling">
+                </div>
+                <div class="popular__card">
+                    <img src="media/card2.png" alt="Подробнее" class="image--scaling">
+                </div>
+                <div class="popular__card">
+                    <img src="media/001.jpg" alt="Подробнее" class="image--scaling">
+                </div>
             </div>
             <div class="popular__actions">
                 <button class="button--red">Конфигуратор</button>
                 <button class="button--red">О модели</button>
             </div>
-            <button class="button--next">&#10095;</button>
+            <button class="button--next" id="popular__switch--right">&#10095;</button>
         </section>
         <section class="service">
             <div class="service__info">
@@ -131,5 +137,6 @@
         </div>
     </footer>
     <script src="styles/components/navigation/burger.js"></script>
+    <script src="styles/pages/main_page/popular.js"></script>
 </body>
 </html>

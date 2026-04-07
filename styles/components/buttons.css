@@ -1,6 +1,7 @@
 .button--left {
     position: absolute;
-    left: 50px;
+    top: 50%;
+    left: 5%;
     height: 100px;
     width: 100px;
     z-index: 10;
@@ -15,7 +16,8 @@
 
 .button--next {
     position: absolute;
-    right: 50px;
+    top: 50%;
+    right: 5%;
     height: 100px;
     width: 100px;
     z-index: 10;
@@ -30,16 +32,10 @@
 
 @media (max-width: 768px) {
     .button--left {
-        opacity: 0;
+        visibility: hidden;
     }
     .button--next {
-        opacity: 0;
-    }
-    .button--left:hover{
-        opacity: 0;
-    }
-    .button--next:hover{
-        opacity: 0;
+        visibility: hidden;
     }
 }
 

@@ -58,6 +58,15 @@ body {
     height: 100%;
 }
 
+@media (max-width: 768px) {
+    .popular__card {
+    flex-basis: 100%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    height: 100%;
+    }   
+}
+
 .sales {
     display: flex;
     position: relative;

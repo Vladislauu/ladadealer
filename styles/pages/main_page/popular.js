@@ -5,12 +5,12 @@ const cards = Array.from(document.querySelectorAll('.popular__card'))
 const cardWidth = 100/3
 let animationMutex = false;
 
-function moveNext() {
+function moveNext(amount) {
   if (animationMutex) return;
   animationMutex = true;
 
   track.style.transition = 'transform 0.3s ease';
-  track.style.transform = `translateX(-${cardWidth}%)`;
+  track.style.transform = `translateX(-${amount}%)`;
 
   track.addEventListener('transitionend', function onTransitionEnd() {
     track.removeEventListener('transitionend', onTransitionEnd);
@@ -28,14 +28,14 @@ function moveNext() {
   });
 }
 
-function movePrev() {
+function movePrev(amount) {
   if (animationMutex) return;
   animationMutex = true;
 
   track.style.transition = 'none';
   const lastCard = track.children[track.children.length - 1];
   track.prepend(lastCard);
-  track.style.transform = `translateX(-${cardWidth}%)`;
+  track.style.transform = `translateX(-${amount}%)`;
   track.offsetHeight;
   
   track.style.transition = 'transform 0.3s ease';
@@ -47,5 +47,5 @@ function movePrev() {
   });
 }
 
-nextBtn.addEventListener('click', moveNext);
-prevBtn.addEventListener('click', movePrev);
+nextBtn.addEventListener('click', moveNext, cardWidth);
+prevBtn.addEventListener('click', movePrev, cardWidth);

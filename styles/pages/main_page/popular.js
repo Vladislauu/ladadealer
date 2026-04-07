@@ -10,7 +10,7 @@ function moveNext(amount) {
   animationMutex = true;
 
   track.style.transition = 'transform 0.3s ease';
-  track.style.transform = `translateX(-${amount}%)`;
+  track.style.transform = `translateX(-${cardWidth}%)`;
 
   track.addEventListener('transitionend', function onTransitionEnd() {
     track.removeEventListener('transitionend', onTransitionEnd);
@@ -35,7 +35,7 @@ function movePrev(amount) {
   track.style.transition = 'none';
   const lastCard = track.children[track.children.length - 1];
   track.prepend(lastCard);
-  track.style.transform = `translateX(-${amount}%)`;
+  track.style.transform = `translateX(-${cardWidth}%)`;
   track.offsetHeight;
   
   track.style.transition = 'transform 0.3s ease';

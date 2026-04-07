@@ -31,3 +31,12 @@ footer {
 .footer__legal {
     overflow: hidden;
 }
+
+.list {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+    justify-content:flex-start;
+    list-style: none;
+}

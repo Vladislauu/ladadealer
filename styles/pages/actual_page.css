@@ -1,0 +1,22 @@
+@import url('../components/buttons.css');
+@import url('../components/footer.css');
+@import url('../components/images.css');
+@import url('../components/navigation/navigation.css');
+@import url('../components/titles.css');
+
+.offers {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    padding: 1% 15%;
+    gap: 5px;
+}
+
+.offers_filters {
+    height: 500px;
+    background-color: antiquewhite;
+}
+
+.offers_cards {
+    height: 500px;
+    background-color: antiquewhite;
+}

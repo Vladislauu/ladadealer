@@ -80,21 +80,19 @@ body {
 .sales {
     display: flex;
     position: relative;
-    overflow: hidden;
     align-items: center;
 }
 
 .sales__cards{
-    width: 100%;
+    width: 300%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
 }
 
 .sales__card{
-    flex: 1 0 100%;
+    flex: 0 0 100%;
     width: 100%;
     position: relative;
     overflow: hidden;

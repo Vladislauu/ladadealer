@@ -20,3 +20,12 @@
     word-break: break-word;              /* Перенос длинных слов */
     max-width: 100%;                     /* Не вылезает за пределы */
 }
+
+@media (max-width: 768px) {
+    .text--title {
+        font-size: inherit;
+    }
+    .text--gray {
+        font-size: large;
+    }
+}

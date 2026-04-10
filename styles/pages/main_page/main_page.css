@@ -18,6 +18,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
 }
 
 .popular__actions {
@@ -51,7 +52,7 @@ body {
 }
 
 .popular__card {
-    flex-basis: calc(100%/3/2);
+    flex-basis: calc(20%);
     flex-grow: 0;
     flex-shrink: 0;
     height: 100%;
@@ -81,6 +82,7 @@ body {
     display: flex;
     position: relative;
     align-items: center;
+    overflow: hidden;
 }
 
 .sales__cards{

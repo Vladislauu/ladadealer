@@ -9,30 +9,60 @@
 <body>
     <header>
         <nav>
-            <img src="media/logo.png" alt="Логотип" class="image--scaling">
+            <a href="index.html">
+                <img src="media/logo.png" alt="Логотип" class="image--scaling">
+            </a>
             <button class="burger" id="burgerBtn" aria-label="Открыть меню">
                 <span class="burger__line"></span>
                 <span class="burger__line"></span>
                 <span class="burger__line"></span>
             </button>
             <div class="navigation__buttons" id="navMenu">
-                <button class="button--sharp">Модельный ряд</button>
-                <button class="button--sharp">Конфигуратор</button>
-                <button class="button--sharp">Авто в наличии</button>
-                <button class="button--sharp">Личный кабинет</button>
+                <a href="models.html" class="button--sharp">Модельный ряд</a>
+                <a class="button--sharp">Конфигуратор</a>
+                <a href="actual.html" class="button--sharp">Авто в наличии</a>
+                <a href="profile.html" class="button--sharp">Личный кабинет</a>
             </div>
         </nav>
     </header>
     <section class="offers">
-        <div class="filters">
+        <div class="offers_filters">
             <div class="filter__city">
-                
+                <div class="text--gray">Город</div>
+                <select id="city" name="city">
+                    <option value="">-</option>
+                    <option value="msk">Москва</option>
+                    <option value="spb">Санкт-Петербург</option>
+                    <option value="ekb">Екатеринбург</option>
+                </select>
             </div>
             <div class="filter__cost">
-
+                <div class="text--gray">Цена</div>
+                <input type="tel" placeholder="От:">
+                <input type="tel" placeholder="До:">
             </div>
             <div class="filter__model">
-
+                <div class="text--gray">Модель</div>
+                <div class="text--gray text--light">
+                    <input class="checker" type="checkbox" name="models" value="model1">
+                    Модель
+                </div>
+                <div class="text--gray text--light">
+                    <input class="checker" type="checkbox" name="models" value="model1">
+                    Модель
+                </div>
+                <div class="text--gray text--light">
+                    <input class="checker" type="checkbox" name="models" value="model1">
+                    Модель
+                </div>
+                <div class="text--gray text--light">
+                    <input class="checker" type="checkbox" name="models" value="model1">
+                    Модель
+                </div>
+                <div class="text--gray text--light">
+                    <input class="checker" type="checkbox" name="models" value="model1">
+                    Модель
+                </div>
             </div>
         </div>
         <div class="offers_cards">

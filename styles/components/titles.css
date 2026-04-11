@@ -21,6 +21,11 @@
     max-width: 100%;                     /* Не вылезает за пределы */
 }
 
+.text--light {
+    font-size: large;
+    font-weight: lighter;
+}
+
 @media (max-width: 768px) {
     .text--title {
         font-size: inherit;

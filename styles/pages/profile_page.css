@@ -9,15 +9,20 @@ span {
     font-size: large;
     font-weight: normal;
 }
-.cars{
+
+.cars {
+    padding: 2% 15%;
+}
+
+.cars__list{
     padding: 0; 
     marker: none;
 }
-.car{
+.cars__card{
     display: flex;
     width: 100%;
 }
-.car div{
+.cars__card div{
     flex: 1;
     text-align: center;
     display: flex;
@@ -31,9 +36,14 @@ span {
     width: 10vw;
 }
 .car__maintence{
-
-    width: 100%;
+    padding: 2% 15%;
 }
+@media (max-width: 768px) {
+    .car__maintence{
+    padding: 2% 2%;
+    }
+}
+
 .maintence{
     padding: 0; 
 }

@@ -1,8 +1,25 @@
-input {
+.input--text {
     padding: 14px 18px;
     font-size: 16px;
     border: 3px solid #C43B3B;
     width: 100%;
     outline: none;
     background: white;
+    border-radius: 15px;
+}
+
+.input--checkbox {
+    accent-color: #C43B3B;
+    height: 20px;
+    width: 20px;
+}
+
+select {
+    padding: 14px 18px;
+    font-size: 16px;
+    border: 3px solid #C43B3B;
+    width: 100%;
+    outline: none;
+    background: white;
+    border-radius: 15px;
 }

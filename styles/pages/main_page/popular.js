@@ -61,7 +61,7 @@ function movePrev() {
       track.removeEventListener('transitionend', onResizeEnd);
 
       track.style.transition = 'transform 0.4s ease-in-out'
-      track.style.transform = `translateX(${basetransform}%)`;
+      track.style.transform = `translateX(${basetransform+20}%)`;
 
       track.addEventListener('transitionend', function onTransitionEnd() {
         track.removeEventListener('transitionend', onTransitionEnd);

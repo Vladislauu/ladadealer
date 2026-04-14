@@ -28,7 +28,7 @@ body {
     justify-content: space-evenly;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .models__card {
         display: flex;
         flex-direction: column;

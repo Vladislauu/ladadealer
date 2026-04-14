@@ -76,6 +76,10 @@
     border-radius: 30px;
     background-color: #C43B3B;
     border: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .button--red:hover {

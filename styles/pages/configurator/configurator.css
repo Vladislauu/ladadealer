@@ -4,6 +4,7 @@
 @import url('../../components/navigation/navigation.css');
 @import url('../../components/titles.css');
 @import url('../../components/input.css');
+@import url("../../components/auth/auth.css");
 
 body {
     padding: 0;

@@ -14,19 +14,52 @@
     justify-content: center;
 }
 
-.auth__auth {
+.auth.active {
+    visibility: visible;
+}
 
+.auth__auth {
+    padding: 0% 5%;
+    visibility: hidden;
+    position: absolute;
     width: 30vw;
-    height: 60vh;
+    height: 40vh;
     background-color: white;
 
     align-items: center;
 
-    gap: 5%;
+    gap: 2%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     border-radius: 15px;
+}
+
+.auth__auth.active {
+    visibility: visible;
+}
+
+.auth__register {
+    padding: 0% 5%;
+    visibility: hidden;
+    position: absolute;
+    width: 30vw;
+    height: 80vh;
+    background-color: white;
+
+    align-items: center;
+
+    gap: 2%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-radius: 15px;
+}
+
+.auth__register.active {
+    visibility: visible;
 }

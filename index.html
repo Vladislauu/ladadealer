@@ -27,26 +27,26 @@
             </nav>
             <div id="auth-menu" class="auth">
                 <div id="auth-login" class="auth__auth">
-                    <input class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
-                    <input class="input--text" type="password" placeholder="Пароль">
-                    <button class="button--red">Вход</button>
+                    <input id="login-phone" class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
+                    <input id="login-password" class="input--text" type="password" placeholder="Пароль">
+                    <button id="login-submit" class="button--red">Вход</button>
                     <button id="register" class="button--red">Регистрация</button>
                     <button id="login-decline" class="button--red">Отмена</button>
                 </div>
                 <div id="auth-register" class="auth__register">
-                    <input class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
-                    <input class="input--text" type="password" placeholder="Фамилия">
-                    <input class="input--text" type="password" placeholder="Имя">
-                    <input class="input--text" type="password" placeholder="Отчество">
-                    <input class="input--text" type="password" placeholder="Пароль">
-                    <input class="input--text" type="password" placeholder="Повторите пароль">
+                    <input id="register-phone" class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
+                    <input id="register-lastname" class="input--text" placeholder="Фамилия">
+                    <input id="register-name" class="input--text" placeholder="Имя">
+                    <input id="register-father" class="input--text" placeholder="Отчество">
+                    <input id="register-password" class="input--text" type="password" placeholder="Пароль">
+                    <input id="register-password-repeat" class="input--text" type="password" placeholder="Повторите пароль">
                     <select name="city">
                         <option value="">Город</option>
                         <option value="msk">Москва</option>
                         <option value="spb">Санкт-Петербург</option>
                         <option value="ekb">Екатеринбург</option>
                     </select>
-                    <button class="button--red">Зарегистрироваться</button>
+                    <button id="register-submit" class="button--red">Зарегистрироваться</button>
                     <button id="register-decline" class="button--red">Назад</button>
                 </div>
             </div>
@@ -162,6 +162,6 @@
     <script src="styles/pages/main_page/popular.js"></script>
     <script src="styles/pages/main_page/sales.js"></script>
     <script src="styles/components/auth/auth.js"></script>
-    <script src="validation.js"></script>
+    <script src="styles/pages/main_page/PhoneValidation.js"></script>
 </body>
 </html>

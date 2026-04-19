@@ -22,31 +22,32 @@
                     <a href="models.html" class="button--sharp">Модельный ряд</a>
                     <a href="configurator.html" class="button--sharp">Конфигуратор</a>
                     <a href="actual.html" class="button--sharp">Авто в наличии</a>
-                    <a href="profile.html" class="button--sharp">Личный кабинет</a>
+                    <button id="l-k" class="button--sharp">Личный кабинет</button>
                 </div>
             </nav>
-            <div class="auth">
-                <div class="auth__auth">
-                    <input class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
-                    <input class="input--text" type="password" placeholder="Пароль">
-                    <button class="button--red">Вход</button>
-                    <button class="button--red">Регистрация</button>
+            <div id="auth-menu" class="auth">
+                <div id="auth-login" class="auth__auth">
+                    <input id="login-phone" class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
+                    <input id="login-password" class="input--text" type="password" placeholder="Пароль">
+                    <button id="login-submit" class="button--red">Вход</button>
+                    <button id="register" class="button--red">Регистрация</button>
+                    <button id="login-decline" class="button--red">Отмена</button>
                 </div>
-                <div class="auth__register">
-                    <input class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
-                    <input class="input--text" type="password" placeholder="Фамилия">
-                    <input class="input--text" type="password" placeholder="Имя">
-                    <input class="input--text" type="password" placeholder="Отчество">
-                    <input class="input--text" type="password" placeholder="Пароль">
-                    <input class="input--text" type="password" placeholder="Повторите пароль">
-                    <select id="city" name="city">
+                <div id="auth-register" class="auth__register">
+                    <input id="register-phone" class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
+                    <input id="register-lastname" class="input--text" placeholder="Фамилия">
+                    <input id="register-name" class="input--text" placeholder="Имя">
+                    <input id="register-father" class="input--text" placeholder="Отчество">
+                    <input id="register-password" class="input--text" type="password" placeholder="Пароль">
+                    <input id="register-password-repeat" class="input--text" type="password" placeholder="Повторите пароль">
+                    <select name="city">
                         <option value="">Город</option>
                         <option value="msk">Москва</option>
                         <option value="spb">Санкт-Петербург</option>
                         <option value="ekb">Екатеринбург</option>
                     </select>
-                    <button class="button--red">Зарегистрироваться</button>
-                    <button class="button--red">Назад</button>
+                    <button id="register-submit" class="button--red">Зарегистрироваться</button>
+                    <button id="register-decline" class="button--red">Назад</button>
                 </div>
             </div>
         </div>
@@ -65,17 +66,17 @@
         <div class="configurator__options">
             <div class="selection-panel">
                 <div class="text--gray">Семейство</div>
-                <select id="Family" name="Семейство">
+                <select id="configurator-car-family" name="Семейство">
                     <option value="">-</option>
-                    <option value="msk">2105</option>
-                    <option value="spb">2107</option>
-                    <option value="ekb">Granta</option>
+                    <option value="2105">2105</option>
+                    <option value="2107">2107</option>
+                    <option value="Granta">Granta</option>
                 </select>
                 <div class="text--gray text--light">Описание...</div>
             </div>
             <div class="selection-panel">
                 <div class="text--gray">Комплектация</div>
-                <select id="Version" name="Комплектация">
+                <select id="configurator-car-version" name="Комплектация">
                     <option value="">-</option>
                     <option value="msk">1.5</option>
                     <option value="spb">1.6</option>
@@ -137,5 +138,6 @@
             -
         </div>
     </footer>
+    <script src="styles/pages/configurator/load.js"></script>
 </body>
 </html>

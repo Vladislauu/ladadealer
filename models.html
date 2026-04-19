@@ -27,26 +27,26 @@
             </nav>
             <div id="auth-menu" class="auth">
                 <div id="auth-login" class="auth__auth">
-                    <input class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
-                    <input class="input--text" type="password" placeholder="Пароль">
-                    <button class="button--red">Вход</button>
+                    <input id="login-phone" class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
+                    <input id="login-password" class="input--text" type="password" placeholder="Пароль">
+                    <button id="login-submit" class="button--red">Вход</button>
                     <button id="register" class="button--red">Регистрация</button>
                     <button id="login-decline" class="button--red">Отмена</button>
                 </div>
                 <div id="auth-register" class="auth__register">
-                    <input class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
-                    <input class="input--text" type="password" placeholder="Фамилия">
-                    <input class="input--text" type="password" placeholder="Имя">
-                    <input class="input--text" type="password" placeholder="Отчество">
-                    <input class="input--text" type="password" placeholder="Пароль">
-                    <input class="input--text" type="password" placeholder="Повторите пароль">
+                    <input id="register-phone" class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
+                    <input id="register-lastname" class="input--text" placeholder="Фамилия">
+                    <input id="register-name" class="input--text" placeholder="Имя">
+                    <input id="register-father" class="input--text" placeholder="Отчество">
+                    <input id="register-password" class="input--text" type="password" placeholder="Пароль">
+                    <input id="register-password-repeat" class="input--text" type="password" placeholder="Повторите пароль">
                     <select name="city">
                         <option value="">Город</option>
                         <option value="msk">Москва</option>
                         <option value="spb">Санкт-Петербург</option>
                         <option value="ekb">Екатеринбург</option>
                     </select>
-                    <button class="button--red">Зарегистрироваться</button>
+                    <button id="register-submit" class="button--red">Зарегистрироваться</button>
                     <button id="register-decline" class="button--red">Назад</button>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 2107
             </div>
             <div class="text--gray">
-                Это стильный и компактный, практичный и разносторонний помощник, союзник и друг. Такой, на которого всегда можно положиться и которому можно доверять на 100%.
+                Люксовая версия абсолютного бестселлера.
             </div>
             <img src="media/card1.png" alt="Логотип" class="image--scaling">
             <img src="media/card2.png" alt="Логотип" class="image--scaling">
@@ -66,7 +66,41 @@
                 от 150 000 ₽<br>1500 ₽ / мес
             </div>
             <div class="models__options">
-                <a href="configurator.html" class="button--red">Конфигуратор</a>
+                <a href="configurator.html?car=2107" class="button--red">Конфигуратор</a>
+                <a href="actual.html" class="button--red">Авто в наличии</a>
+            </div>
+        </div>
+        <div class="models__card">
+            <div class="text--gray">
+                2105
+            </div>
+            <div class="text--gray">
+                Это стильный и компактный, практичный и разносторонний помощник, союзник и друг. Такой, на которого всегда можно положиться и которому можно доверять на 100%.
+            </div>
+            <img src="media/card1.png" alt="Логотип" class="image--scaling">
+            <img src="media/card2.png" alt="Логотип" class="image--scaling">
+            <div class="text--gray">
+                от 95 000 ₽<br>950 ₽ / мес
+            </div>
+            <div class="models__options">
+                <a href="configurator.html?car=2105" class="button--red">Конфигуратор</a>
+                <a href="actual.html" class="button--red">Авто в наличии</a>
+            </div>
+        </div>
+        <div class="models__card">
+            <div class="text--gray">
+                Granta
+            </div>
+            <div class="text--gray">
+                Абсолютно новое слово в бюджетном сегменте: низкий расход топлива, высокий клиренс, вместительный багажник. Всё для вашего удобства.
+            </div>
+            <img src="media/card1.png" alt="Логотип" class="image--scaling">
+            <img src="media/card2.png" alt="Логотип" class="image--scaling">
+            <div class="text--gray">
+                от 180000 ₽<br>1800 ₽ / мес
+            </div>
+            <div class="models__options">
+                <a href="configurator.html?car=Granta" class="button--red">Конфигуратор</a>
                 <a href="actual.html" class="button--red">Авто в наличии</a>
             </div>
         </div>

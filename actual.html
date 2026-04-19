@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <link rel="stylesheet" href="styles/pages/actual_page.css">
+    <link rel="stylesheet" href="styles/components/order/order.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LADA: в наличии</title>
@@ -48,6 +49,15 @@
                     </select>
                     <button id="register-submit" class="button--red">Зарегистрироваться</button>
                     <button id="register-decline" class="button--red">Назад</button>
+                </div>
+            </div>
+            <div id="order-modal" class="order">
+                <div id="order-card" class="order__card">
+                    <span class="text--gray">Заказ автомобиля</span>
+                    <span id="order-description" class="text--gray text--light"></span>
+                    <input id="order-phone" class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
+                    <button id="order-submit" class="button--red">Отправить заявку</button>
+                    <button id="order-cancel" class="button--red">Отмена</button>
                 </div>
             </div>
         </div>
@@ -266,4 +276,6 @@
         </div>
     </footer>
 </body>
+<script src="styles/components/navigation/burger.js"></script>
+<script src="styles/components/order/order.js"></script>
 </html>

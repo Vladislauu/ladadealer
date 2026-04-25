@@ -177,9 +177,6 @@
         </div>
     </section>
     <?php include 'footer.php'; ?>
-    <script src="styles/components/navigation/burger.js"></script>
-    <script src="styles/components/auth/auth.js"></script>
 </body>
-<script src="styles/components/navigation/burger.js"></script>
 <script src="styles/components/order/order.js"></script>
 </html>

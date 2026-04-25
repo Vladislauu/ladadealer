@@ -69,10 +69,8 @@
             </form>
         </section>
    <?php include 'footer.php'; ?>
-    <script src="styles/components/navigation/burger.js"></script>
     <script src="styles/pages/main_page/popular.js"></script>
     <script src="styles/pages/main_page/sales.js"></script>
-    <script src="styles/components/auth/auth.js"></script>
     <script src="styles/pages/main_page/PhoneValidation.js"></script>
 </body>
 </html>

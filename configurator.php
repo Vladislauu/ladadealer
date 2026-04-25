@@ -50,7 +50,5 @@
     </section>
     <?php include 'footer.php'; ?>
     <script src="styles/pages/configurator/load.js"></script>
-    <script src="styles/components/navigation/burger.js"></script>
-    <script src="styles/components/auth/auth.js"></script>
 </body>
 </html>

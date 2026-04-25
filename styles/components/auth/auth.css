@@ -1,5 +1,8 @@
+@import url('../../components/buttons.css');
+@import url('../../components/input.css');
+@import url('../../components/titles.css');
+
 .auth {
-    visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;
@@ -12,10 +15,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.auth.active {
-    visibility: visible;
 }
 
 .auth__auth {

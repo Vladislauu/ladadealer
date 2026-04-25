@@ -7,51 +7,7 @@
     <title>LADA: в наличии</title>
 </head>
 <body>
-    <header>
-        <div class="header__content">
-            <nav>
-                <a href="index.html">
-                    <img src="media/logo.png" alt="Логотип" class="image--scaling">
-                </a>
-                <button class="burger" id="burgerBtn" aria-label="Открыть меню">
-                    <span class="burger__line"></span>
-                    <span class="burger__line"></span>
-                    <span class="burger__line"></span>
-                </button>
-                <div class="navigation__buttons" id="navMenu">
-                    <a href="models.html" class="button--sharp">Модельный ряд</a>
-                    <a href="configurator.html" class="button--sharp">Конфигуратор</a>
-                    <a href="actual.html" class="button--sharp">Авто в наличии</a>
-                    <button id="l-k" class="button--sharp">Личный кабинет</button>
-                </div>
-            </nav>
-            <div id="auth-menu" class="auth">
-                <div id="auth-login" class="auth__auth">
-                    <input id="login-phone" class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
-                    <input id="login-password" class="input--text" type="password" placeholder="Пароль">
-                    <button id="login-submit" class="button--red">Вход</button>
-                    <button id="register" class="button--red">Регистрация</button>
-                    <button id="login-decline" class="button--red">Отмена</button>
-                </div>
-                <div id="auth-register" class="auth__register">
-                    <input id="register-phone" class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
-                    <input id="register-lastname" class="input--text" placeholder="Фамилия">
-                    <input id="register-name" class="input--text" placeholder="Имя">
-                    <input id="register-father" class="input--text" placeholder="Отчество">
-                    <input id="register-password" class="input--text" type="password" placeholder="Пароль">
-                    <input id="register-password-repeat" class="input--text" type="password" placeholder="Повторите пароль">
-                    <select name="city">
-                        <option value="">Город</option>
-                        <option value="msk">Москва</option>
-                        <option value="spb">Санкт-Петербург</option>
-                        <option value="ekb">Екатеринбург</option>
-                    </select>
-                    <button id="register-submit" class="button--red">Зарегистрироваться</button>
-                    <button id="register-decline" class="button--red">Назад</button>
-                </div>
-            </div>
-        </div>
-    </header>
+    <?php include 'header.php'; ?>
     <section class="offers">
         <div class="offers__filters">
             <div class="filter__city">
@@ -219,51 +175,8 @@
 
         </div>
     </section>
-    <footer class="footer">
-        <div class="footer__lists">
-            <div class="footer__list">
-                <div class="text--gray">
-                    Модельный ряд
-                </div>
-                <ul class="list">
-                    <li>
-                        <a href="configurator.html" class="button--light">Lada 2105</a>
-                    </li>
-                    <li>
-                        <a href="configurator.html" class="button--light">Lada 2107</a>
-                    </li>
-                    <li>
-                        <a href="configurator.html" class="button--light">Lada Granta</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="footer__list">
-                <div class="text--gray">
-                    Покупателям
-                </div>
-                <ul class="list">
-                    <li>
-                        <a href="actual.html" class="button--light">Авто в наличии</a>
-                    </li>
-                    <li>
-                        <a href="models.html" class="button--light">Модельный ряд</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="footer__list">
-                <div class="text--gray">
-                    Владельцам
-                </div>
-                <ul class="list">
-                     <li>
-                        <button class="button--light">Личный кабинет</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer__legal">
-            -
-        </div>
-    </footer>
+    <?php include 'footer.php'; ?>
+    <script src="styles/components/navigation/burger.js"></script>
+    <script src="styles/components/auth/auth.js"></script>
 </body>
 </html>

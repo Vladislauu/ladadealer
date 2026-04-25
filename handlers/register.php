@@ -2,13 +2,13 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $phone = trim($_POST['reg_phone']);
-    $lastname = trim($_POST['reg_lastname']);
-    $name = trim($_POST['reg_name']);
-    $father = trim($_POST['reg_father']);
-    $password = $_POST['reg_password'];
-    $password_repeat = $_POST['reg_password_repeat'];
-    $city = $_POST['reg_city'];
+    $phone = trim($_POST['phone']);
+    $lastname = trim($_POST['lastname']);
+    $name = trim($_POST['name']);
+    $father = trim($_POST['father']);
+    $password = $_POST['password'];
+    $password_repeat = $_POST['password_repeat'];
+    $city = $_POST['city'];
 
     // Валидация на сервере
     $errors = [];
@@ -28,16 +28,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['auth'] = true;
 
         // Перенаправляем в личный кабинет
-        header('Location: profile.php');
+        header('Location: ../profile.php');
         exit;
     } else {
         // Если есть ошибки – возвращаем на страницу с сообщением
         $errorString = implode(',', $errors);
-        header("Location: index.php?error=$errorString");
+        header("Location: ../index.php?error=$errorString");
         exit;
     }
 } else {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
 }
 ?>

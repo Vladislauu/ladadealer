@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <link rel="stylesheet" href="styles/pages/actual_page.css">
+    <link rel="stylesheet" href="styles/components/order/order.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LADA: в наличии</title>
@@ -179,4 +180,6 @@
     <script src="styles/components/navigation/burger.js"></script>
     <script src="styles/components/auth/auth.js"></script>
 </body>
+<script src="styles/components/navigation/burger.js"></script>
+<script src="styles/components/order/order.js"></script>
 </html>

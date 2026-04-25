@@ -9,12 +9,12 @@
                     <span class="burger__line"></span>
                     <span class="burger__line"></span>
                 </button>
-                <div class="navigation__buttons" id="navMenu">
-                    <a href="models.php" class="button--sharp">Модельный ряд</a>
-                    <a href="configurator.php" class="button--sharp">Конфигуратор</a>
-                    <a href="actual.php" class="button--sharp">Авто в наличии</a>
-                    <button id="l-k" class="button--sharp">Личный кабинет</button>
-                </div>
+                <form class="navigation__buttons" id="navMenu" action="handlers/login.php" method="POST">
+                    <a href="models.php" class="button--sharp" type="button">Модельный ряд</a>
+                    <a href="configurator.php" class="button--sharp" type="button">Конфигуратор</a>
+                    <a href="actual.php" class="button--sharp" type="button">Авто в наличии</a>
+                    <button id="l-k" class="button--sharp" type="submit">Личный кабинет</button>
+                </form>
             </nav>
             <div id="auth-menu" class="auth">
                 <form id="auth-login" class="auth__auth" action="handlers/login.php" method="POST">

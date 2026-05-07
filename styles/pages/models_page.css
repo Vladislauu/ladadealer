@@ -12,13 +12,17 @@ body {
 }
 
 .models {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     padding: 2% 15%;
+    gap: 5%;
 }
 
 .models__card {
     width: 100%;
     display: grid;
-    grid-template-rows: auto auto 20% ;
+    grid-template-rows: auto auto auto ;
     grid-template-columns: 50% 50%;
     overflow: hidden;
 }

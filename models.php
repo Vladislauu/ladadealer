@@ -76,7 +76,6 @@ $mysqli->close();
                         <?= $description ?>
                     </div>
                     <img src="<?= $image ?>" alt="Изображение <?= $modelName ?>" class="image--scaling">
-                    <img src="<?= $image ?>" alt="Изображение <?= $modelName ?>" class="image--scaling">
                     <div class="text--gray">
                         от <?= number_format($minPrice, 0, ',', ' ') ?> ₽<br>
                         <?= number_format($monthlyPayment, 0, ',', ' ') ?> ₽ / мес

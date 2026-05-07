@@ -18,6 +18,14 @@ span {
     font-weight: normal;
 }
 
+.account {
+    padding: 2% 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 2%;
+}
+
 .cars {
     padding: 2% 15%;
 }
@@ -42,6 +50,7 @@ span {
 
 .button--red{
     width: 10vw;
+    text-align: center;
 }
 .car__maintence{
     padding: 2% 15%;

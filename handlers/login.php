@@ -64,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_name'] = $user['Имя'] . ' ' . $user['Фамилия'];
             $_SESSION['user_role'] = $user['ID роли'];
             $_SESSION['auth'] = true;
-
             file_put_contents('debug.log', date('Y-m-d H:i:s') . " - УСПЕШНЫЙ вход для {$user['Имя']} {$user['Фамилия']}\n", FILE_APPEND);
             $stmt->close();
             $mysqli->close();

@@ -18,7 +18,7 @@ register_decline.addEventListener('click', () => {
     auth_register.classList.toggle("active")
 })
 
-login_decline.addEventListener('click', () => auth_menu.classList.toggle("active"))
+login_decline.addEventListener('click', () => window.location.href = "../index.php")
 
 /*
                     <input id="login-phone" class="input--text" type="tel" placeholder="+7 (___) ___-__-__">

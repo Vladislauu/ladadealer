@@ -102,17 +102,6 @@ $mysqli->close();
             <a href="profile.php" class="button--red">Войти</a>
         </div>
     </section>
-    
-    <section class="consultation">
-        <div class="text--gray">
-            Получите дополнительную информацию по телефону!
-        </div>
-        <form class="consultation__form" action="handlers/consult.php" method="POST">
-            <input id="consultation-phone-form" class="input--text" type="tel" placeholder="+7 (___) ___-__-__">
-            <button id="consultation-send-form" class="button--red" type="submit">Отправить заявку</button>
-        </form>
-    </section>
-    
     <?php include 'footer.php'; ?>
     <script src="styles/pages/main_page/popular.js"></script>
     <script src="styles/pages/main_page/sales.js"></script>

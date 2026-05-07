@@ -131,6 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $error_message = "Заявка не найдена.";
     } else {
         $phone = $req['Контактный номер телефона'];
+        $offer = $req['ID автомобиля'];
         $stmt = $mysqli->prepare("SELECT `ID пользователя` FROM `Пользователь` WHERE `Номер телефона` = ?");
         $stmt->bind_param('s', $phone);
         $stmt->execute();
@@ -150,6 +151,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 $stmt_del->bind_param('i', $request_id);
                 $stmt_del->execute();
                 $stmt_del->close();
+                
+                $stmt_car_del = $mysqli->prepare("DELETE FROM `автомобиль в наличии` WHERE `ID автомобиля` = ?" );
+                $stmt_car_del->bind_param('i', $offer);
+                $stmt_car_del->execute();
+                $stmt_car_del->close();
                 $success_message = "Заявка принята, автомобиль добавлен пользователю.";
             } else {
                 $error_message = "Ошибка добавления автомобиля: " . $mysqli->error;
@@ -344,7 +350,7 @@ $mysqli->close();
     <?php endif; ?>
 
     <div class="admin-section">
-        <h2>➕ Добавить автомобиль в наличии</h2>
+        <h2>Добавить автомобиль в наличии</h2>
         <form method="POST" id="addCarForm">
             <input type="hidden" name="action" value="add_car">
             <div class="form-inline">
@@ -381,7 +387,7 @@ $mysqli->close();
     </div>
 
     <div class="admin-section">
-        <h2>📝 Заявки из конфигуратора</h2>
+        <h2>Заявки из конфигуратора</h2>
         <table class="admin-table">
             <thead>
                 <tr><th>ID</th><th>Модель</th><th>Комплектация</th><th>Цвет</th><th>Телефон</th><th>Действие</th></tr>
@@ -411,7 +417,7 @@ $mysqli->close();
     </div>
 
     <div class="admin-section">
-        <h2>🚗 Заявки на автомобиль из наличия</h2>
+        <h2>Заявки на автомобиль из наличия</h2>
         <table class="admin-table">
             <thead><tr><th>ID</th><th>Модель</th><th>Комплектация</th><th>Стоимость</th><th>Телефон</th><th>Действие</th></tr></thead>
             <tbody>
@@ -439,7 +445,7 @@ $mysqli->close();
     </div>
 
     <div class="admin-section">
-        <h2>🔧 Редактирование записей на сервис</h2>
+        <h2>Редактирование записей на сервис</h2>
         <table class="admin-table">
             <thead><tr><th>ID</th><th>Пользователь</th><th>Автомобиль</th><th>Описание</th><th>Дата заявки</th><th>Текущий статус</th><th>Установить дату записи</th><th>Новый статус</th><th></th></tr></thead>
             <tbody>

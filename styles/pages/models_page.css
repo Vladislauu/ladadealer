@@ -16,6 +16,7 @@ body {
 }
 
 .models__card {
+    padding:5%;
     width: 100%;
     display: grid;
     grid-template-rows: auto auto 20% ;

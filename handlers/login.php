@@ -49,10 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Логируем результат поиска
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
-        // Лог с данными пользователя (без пароля)
         $logResult = date('Y-m-d H:i:s') . " - Пользователь НАЙДЕН: ID={$user['ID пользователя']}, Имя={$user['Имя']} {$user['Фамилия']}, Телефон={$user['Номер телефона']}\n";
         file_put_contents('debug.log', $logResult, FILE_APPEND);
         
@@ -73,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             file_put_contents('debug.log', date('Y-m-d H:i:s') . " - НЕВЕРНЫЙ пароль для пользователя ID={$user['ID пользователя']} ".$password." ".$stored_password, FILE_APPEND);
         }
     } else {
-        // Пользователь не найден
         $logResult = date('Y-m-d H:i:s') . " - Пользователь с телефоном $phone_digits НЕ НАЙДЕН\n";
         file_put_contents('debug.log', $logResult, FILE_APPEND);
     }

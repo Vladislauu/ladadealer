@@ -17,14 +17,13 @@ $mysqli->set_charset('utf8');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $versionId = (int)$_POST['version_id'];
     $colorId = (int)$_POST['color_id'];
-    $phone = preg_replace('/\D/', '', $_POST['phone']); // только цифры
+    $phone = preg_replace('/\D/', '', $_POST['phone']);
 
     if (!$versionId || !$colorId || !$phone) {
         echo json_encode(['success' => false, 'error' => 'Не все данные заполнены']);
         exit;
     }
 
-    // Статус по умолчанию: допустим, 1 = "Новая"
     $statusId = 1;
 
     $stmt = $mysqli->prepare("INSERT INTO `Заявка конфигуратор` (`ID комплектации`, `ID цвет модели`, `ID статуса`, `Контактный номер телефона`) VALUES (?, ?, ?, ?)");

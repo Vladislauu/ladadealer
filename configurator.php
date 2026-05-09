@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Подключение к БД
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = '21074';
@@ -13,7 +12,6 @@ if ($mysqli->connect_error) {
 }
 $mysqli->set_charset('utf8');
 
-// Получаем выбранную модель из GET-параметра 'car'
 $carName = isset($_GET['car']) ? trim($_GET['car']) : '';
 $selectedModelId = null;
 $modelInfo = null;
@@ -21,7 +19,6 @@ $complectations = [];
 $colors = [];
 
 if (!empty($carName)) {
-    // Ищем модель по наименованию
     $stmt = $mysqli->prepare("SELECT `ID модели`, `Наименование модели` FROM `Модель` WHERE `Наименование модели` = ?");
     $stmt->bind_param('s', $carName);
     $stmt->execute();
@@ -33,7 +30,6 @@ if (!empty($carName)) {
     $stmt->close();
 
     if ($selectedModelId) {
-        // --- Получаем комплектации для модели ---
         $stmt = $mysqli->prepare("SELECT `ID комплектации`, `Наименование комплектации`, `Базовая стоимость` FROM `Комплектация` WHERE `ID модели` = ? ORDER BY `Базовая стоимость`");
         $stmt->bind_param('i', $selectedModelId);
         $stmt->execute();
@@ -43,7 +39,6 @@ if (!empty($carName)) {
         }
         $stmt->close();
 
-        // --- Получаем цвета для модели через таблицу Цвет модели + Цвет ---
         $stmt = $mysqli->prepare("
             SELECT 
                 cm.`ID цвет модели`,
@@ -63,7 +58,6 @@ if (!empty($carName)) {
     }
 }
 
-// Определяем выбранную комплектацию (из GET) или берём первую
 $selectedVersionId = isset($_GET['version']) ? (int)$_GET['version'] : 0;
 $selectedComplectation = null;
 if ($selectedVersionId && !empty($complectations)) {
@@ -79,7 +73,6 @@ if (!$selectedComplectation && !empty($complectations)) {
     $selectedVersionId = $selectedComplectation['ID комплектации'];
 }
 
-// Выбранный цвет (первый доступный)
 $selectedColor = !empty($colors) ? $colors[0] : null;
 $selectedColorId = $selectedColor ? $selectedColor['ID цвет модели'] : 0;
 $currentImage = $selectedColor ? $selectedColor['Директория с изображениями'] : 'media/default_car.png';
@@ -120,7 +113,6 @@ $mysqli->close();
                 <select id="configurator-car-family" name="Семейство">
                     <option value="">-</option>
                     <?php
-                    // Для выбора другого семейства можно подгрузить все модели (опционально)
                     $allModels = [];
                     $tempConn = new mysqli($db_host, $db_user, $db_pass, $db_name);
                     $tempConn->set_charset('utf8');
@@ -170,7 +162,6 @@ $mysqli->close();
     <?php include 'footer.php'; ?>
 
     <script>
-        // Получаем элементы
         const familySelect = document.getElementById('configurator-car-family');
         const versionSelect = document.getElementById('configurator-car-version');
         const totalPriceSpan = document.getElementById('total-price');
@@ -178,7 +169,6 @@ $mysqli->close();
         const colorItems = document.querySelectorAll('.color-pick');
         const submitBtn = document.getElementById('submit-order');
 
-        // Функция обновления цены при смене комплектации
         function updatePrice() {
             const selectedOption = versionSelect.options[versionSelect.selectedIndex];
             const price = selectedOption.getAttribute('data-price');
@@ -189,16 +179,13 @@ $mysqli->close();
             }
         }
 
-        // Смена комплектации
         versionSelect.addEventListener('change', function() {
             updatePrice();
-            // Можно также обновить параметр URL без перезагрузки (history API)
             const url = new URL(window.location.href);
             url.searchParams.set('version', this.value);
             window.history.pushState({}, '', url);
         });
 
-        // Смена цвета
         colorItems.forEach(item => {
             item.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -206,11 +193,9 @@ $mysqli->close();
                 if (imageUrl) {
                     carImage.src = imageUrl;
                 }
-                // Активный класс (можно добавить выделение)
                 colorItems.forEach(c => c.classList.remove('active'));
                 this.classList.add('active');
 
-                // Обновить URL параметр цвета (необязательно)
                 const colorId = this.getAttribute('data-color-id');
                 const url = new URL(window.location.href);
                 if (colorId) url.searchParams.set('color', colorId);
@@ -218,7 +203,6 @@ $mysqli->close();
             });
         });
 
-        // Смена семейства - перезагрузка страницы с новым параметром car
         familySelect.addEventListener('change', function() {
             const selectedFamily = this.value;
             if (selectedFamily) {
@@ -226,7 +210,6 @@ $mysqli->close();
             }
         });
 
-        // Отправка заявки
         submitBtn.addEventListener('click', async function() {
             const selectedVersion = versionSelect.value;
             const selectedColorElem = document.querySelector('.color-pick.active');
@@ -243,7 +226,6 @@ $mysqli->close();
                 return;
             }
 
-            // Отправка заявки на сервер (можно через fetch)
             const formData = new FormData();
             formData.append('version_id', selectedVersion);
             formData.append('color_id', colorId);
@@ -265,7 +247,6 @@ $mysqli->close();
             }
         });
 
-        // Устанавливаем активный цвет по умолчанию
         if (colorItems.length > 0) {
             colorItems[0].classList.add('active');
         }
@@ -275,7 +256,6 @@ $mysqli->close();
 </html>
 
 <?php
-// Вспомогательная функция для получения примерного цвета по названию (для демонстрации)
 function getColorCode($colorName) {
     $map = [
         'белый' => '#FFFFFF',

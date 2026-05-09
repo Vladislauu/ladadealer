@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Проверяем, существует ли автомобиль
     $checkStmt = $mysqli->prepare("SELECT 1 FROM `Автомобиль в наличии` WHERE `ID автомобиля` = ?");
     $checkStmt->bind_param('i', $carId);
     $checkStmt->execute();
@@ -35,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Вставляем заявку (дата истечения брони – NULL, по умолчанию)
     $stmt = $mysqli->prepare("INSERT INTO `Заявка на автомобиль` (`ID автомобиля`, `Контактный номер телефона`, `Дата истечения брони`) VALUES (?, ?, NULL)");
     $stmt->bind_param('is', $carId, $phone);
     if ($stmt->execute()) {

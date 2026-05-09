@@ -100,7 +100,6 @@ register_submit.addEventListener('click', function(event)
             return;
         }
     }
-    alert("Всё заполнено верно!")
 })
 
 
@@ -133,5 +132,4 @@ login_submit.addEventListener('click', function(event)
         event.preventDefault();
         return;
     }
-    alert("Всё заполнено верно!")
 })

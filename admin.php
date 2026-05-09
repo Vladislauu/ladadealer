@@ -1,13 +1,11 @@
 <?php
 session_start();
 
-// Проверка авторизации и роли (только роль > 1)
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) || $_SESSION['user_role'] <= 1) {
     header('Location: index.php');
     exit;
 }
 
-// Подключение к БД
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = '21074';
@@ -23,15 +21,12 @@ $mysqli->autocommit(true);
 $success_message = '';
 $error_message = '';
 
-// --- ОБРАБОТКА POST-ЗАПРОСОВ ---
 
-// 1. Добавление нового автомобиля в наличии
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add_car') {
     $complectation_id = (int)$_POST['complectation_id'];
     $color_model_id = (int)$_POST['color_model_id'];
     $actual_price = (int)$_POST['actual_price'];
 
-    // Проверяем базовую стоимость комплектации
     $stmt = $mysqli->prepare("SELECT `Базовая стоимость` FROM `Комплектация` WHERE `ID комплектации` = ?");
     $stmt->bind_param('i', $complectation_id);
     $stmt->execute();
@@ -53,14 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// 2. Обработка заявок (конфигуратор и автомобиль)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'accept_config_request') {
     $request_id = (int)$_POST['request_id'];
     $reg_number = trim($_POST['reg_number']);
     $mileage = (int)$_POST['mileage'];
     $to_mileage = (int)$_POST['to_mileage']; // пробег последнего ТО
 
-    // Получаем данные заявки
     $stmt = $mysqli->prepare("
         SELECT z.`ID комплектации`, z.`ID цвет модели`, z.`Контактный номер телефона`, k.`ID модели`
         FROM `Заявка конфигуратор` z
@@ -75,7 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     if (!$req) {
         $error_message = "Заявка не найдена.";
     } else {
-        // Ищем пользователя по номеру телефона
         $phone = $req['Контактный номер телефона'];
         $stmt = $mysqli->prepare("SELECT `ID пользователя` FROM `Пользователь` WHERE `Номер телефона` = ?");
         $stmt->bind_param('s', $phone);
@@ -84,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt->close();
 
         if ($user) {
-            // Добавляем личный автомобиль
             $stmt = $mysqli->prepare("
                 INSERT INTO `Личный автомобиль` 
                 (`ID пользователя`, `ID модели`, `Регистрационный знак`, `Пробег`, `Пробег последнего ТО`)
@@ -92,7 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             ");
             $stmt->bind_param('iisii', $user['ID пользователя'], $req['ID модели'], $reg_number, $mileage, $to_mileage);
             if ($stmt->execute()) {
-                // Удаляем или меняем статус заявки (удалим для простоты)
                 $stmt_del = $mysqli->prepare("DELETE FROM `Заявка конфигуратор` WHERE `ID заявки` = ?");
                 $stmt_del->bind_param('i', $request_id);
                 $stmt_del->execute();
@@ -114,7 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $mileage = (int)$_POST['mileage'];
     $to_mileage = (int)$_POST['to_mileage'];
 
-    // Получаем данные заявки
     $stmt = $mysqli->prepare("
         SELECT z.`ID автомобиля`, z.`Контактный номер телефона`, a.`ID комплектации`, a.`ID цвет модели`, k.`ID модели`
         FROM `Заявка на автомобиль` z
@@ -146,7 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             ");
             $stmt->bind_param('iisii', $user['ID пользователя'], $req['ID модели'], $reg_number, $mileage, $to_mileage);
             if ($stmt->execute()) {
-                // Удаляем заявку и, возможно, автомобиль из наличия? По умолчанию не удаляем – оставляем статус.
                 $stmt_del = $mysqli->prepare("DELETE FROM `Заявка на автомобиль` WHERE `ID заявки` = ?");
                 $stmt_del->bind_param('i', $request_id);
                 $stmt_del->execute();
@@ -167,7 +155,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// 3. Редактирование записи на сервис
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'edit_service') {
     $record_id = (int)$_POST['record_id'];
     $date_record = $_POST['date_record'] ? date('Y-m-d H:i:s', strtotime($_POST['date_record'])) : null;
@@ -183,15 +170,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt->close();
 }
 
-// ---- Выборка данных для отображения ----
 
-// 1. Модели для селекта в форме добавления авто
 $models = [];
 $res = $mysqli->query("SELECT `ID модели`, `Наименование модели` FROM `Модель` ORDER BY `Наименование модели`");
 while ($row = $res->fetch_assoc()) $models[] = $row;
 $res->free();
 
-// 2. Заявки конфигуратора (статус пока не используется, просто все активные)
 $config_requests = [];
 $res = $mysqli->query("
     SELECT z.*, k.`Наименование комплектации`, c.`Наименование цвета`, m.`Наименование модели`
@@ -205,7 +189,6 @@ $res = $mysqli->query("
 $config_requests = $res->fetch_all(MYSQLI_ASSOC);
 $res->free();
 
-// 3. Заявки на автомобиль
 $car_requests = [];
 $res = $mysqli->query("
     SELECT z.*, a.`Актуальная стоимость`, k.`Наименование комплектации`, m.`Наименование модели`
@@ -218,7 +201,6 @@ $res = $mysqli->query("
 $car_requests = $res->fetch_all(MYSQLI_ASSOC);
 $res->free();
 
-// 4. Записи на сервис (для редактирования)
 $service_records = [];
 $res = $mysqli->query("
     SELECT z.*, u.`Фамилия`, u.`Имя`, u.`Номер телефона`, l.`Регистрационный знак`, s.`Наименование статуса`
@@ -231,13 +213,11 @@ $res = $mysqli->query("
 $service_records = $res->fetch_all(MYSQLI_ASSOC);
 $res->free();
 
-// 5. Все статусы для выпадающего списка
 $statuses = [];
 $res = $mysqli->query("SELECT `ID статуса`, `Наименование статуса` FROM `Статус` ORDER BY `ID статуса`");
 while ($row = $res->fetch_assoc()) $statuses[] = $row;
 $res->free();
 
-// 6. Комплектации и цвета для AJAX (отдельные скрипты, но для начала загрузим все в JS)
 $complectations_by_model = [];
 $colors_by_model = [];
 $all_complectations = $mysqli->query("SELECT `ID комплектации`, `ID модели`, `Наименование комплектации`, `Базовая стоимость` FROM `Комплектация`");
@@ -260,7 +240,6 @@ $mysqli->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LADA: Админ-панель</title>
     <style>
-        /* Дополнительные стили для админ-панели */
         .admin-section {
             background: #f9f9f9;
             margin: 20px;
@@ -478,7 +457,6 @@ $mysqli->close();
     </div>
 
     <script>
-        // Динамическая подгрузка комплектаций и цветов при выборе модели
         const complectations = <?= json_encode($complectations_by_model) ?>;
         const colors = <?= json_encode($colors_by_model) ?>;
 
@@ -495,7 +473,6 @@ $mysqli->close();
                 colorSelect.innerHTML = '<option value="">Сначала выберите модель</option>';
                 return;
             }
-            // Обновляем комплектации
             let compOptions = '<option value="">-- Выберите комплектацию --</option>';
             if (complectations[modelId]) {
                 complectations[modelId].forEach(comp => {
@@ -508,7 +485,6 @@ $mysqli->close();
             }
             complectationSelect.innerHTML = compOptions;
 
-            // Обновляем цвета
             let colorOptions = '<option value="">-- Выберите цвет --</option>';
             if (colors[modelId]) {
                 colors[modelId].forEach(clr => {
@@ -523,7 +499,6 @@ $mysqli->close();
         }
 
         modelSelect.addEventListener('change', updateComplectationsAndColors);
-        // Дополнительно можно при добавлении автомобиля проверять цену (не ниже базовой)
         document.getElementById('addCarForm').addEventListener('submit', function(e) {
             const selectedComp = complectationSelect.options[complectationSelect.selectedIndex];
             const basePrice = selectedComp.getAttribute('data-base-price');

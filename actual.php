@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Подключение к БД
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = '21074';
@@ -13,7 +12,6 @@ if ($mysqli->connect_error) {
 }
 $mysqli->set_charset('utf8');
 
-// ---------- Получаем все модели для чекбоксов (динамически) ----------
 $modelsList = [];
 $resultModels = $mysqli->query("SELECT `Наименование модели` FROM `Модель` ORDER BY `Наименование модели`");
 if ($resultModels) {
@@ -23,17 +21,14 @@ if ($resultModels) {
     $resultModels->free();
 }
 
-// ---------- Обработка фильтров из GET ----------
 $selectedModels = isset($_GET['models']) ? (array)$_GET['models'] : [];
 $priceFrom = isset($_GET['price_from']) && is_numeric($_GET['price_from']) ? (int)$_GET['price_from'] : null;
 $priceTo = isset($_GET['price_to']) && is_numeric($_GET['price_to']) ? (int)$_GET['price_to'] : null;
 
-// Формируем WHERE условия
 $whereConditions = [];
 $params = [];
 $types = "";
 
-// Фильтр по модели (названия моделей)
 if (!empty($selectedModels)) {
     $placeholders = implode(',', array_fill(0, count($selectedModels), '?'));
     $whereConditions[] = "m.`Наименование модели` IN ($placeholders)";
@@ -43,21 +38,18 @@ if (!empty($selectedModels)) {
     }
 }
 
-// Фильтр по цене "от"
 if ($priceFrom !== null) {
     $whereConditions[] = "av.`Актуальная стоимость` >= ?";
     $params[] = $priceFrom;
     $types .= "i";
 }
 
-// Фильтр по цене "до"
 if ($priceTo !== null) {
     $whereConditions[] = "av.`Актуальная стоимость` <= ?";
     $params[] = $priceTo;
     $types .= "i";
 }
 
-// Базовый SQL-запрос
 $sql = "
     SELECT 
         av.`ID автомобиля`,
@@ -77,7 +69,6 @@ if (!empty($whereConditions)) {
 
 $sql .= " ORDER BY av.`Актуальная стоимость`";
 
-// Выполняем запрос с параметрами
 $stmt = $mysqli->prepare($sql);
 if (!empty($params)) {
     $stmt->bind_param($types, ...$params);
@@ -105,18 +96,7 @@ $mysqli->close();
 <body>
     <?php include 'header.php'; ?>
     <section class="offers">
-        <!-- Форма фильтров с GET-параметрами -->
         <form class="offers__filters" method="GET" action="">
-            <div class="filter__city">
-                <div class="text--gray">Город</div>
-                <select id="city" name="city" disabled>
-                    <option value="">-</option>
-                    <option value="msk">Москва</option>
-                    <option value="spb">Санкт-Петербург</option>
-                    <option value="ekb">Екатеринбург</option>
-                </select>
-                <div style="font-size: 12px; color: gray;">(фильтр временно недоступен)</div>
-            </div>
             <div class="filter__cost">
                 <div class="text--gray">Цена</div>
                 <input class="input--text" id="cost--from" name="price_from" type="tel" placeholder="От:" value="<?= htmlspecialchars($priceFrom ?? '') ?>">
@@ -166,7 +146,6 @@ $mysqli->close();
                         <?= $price ?> ₽
                     </div>
                     <div class="text--gray text--light">
-                        <!-- В БД нет привязки к городу, выводим заглушку -->
                         В наличии
                     </div>
                     <div class="offer-card__details">
@@ -179,9 +158,7 @@ $mysqli->close();
     </section>
     <?php include 'footer.php'; ?>
     
-    <!-- Скрипт для обработки заказа (модальное окно) -->
     <script>
-        // Обработчик кнопок "Заказать" – открывает модальное окно с запросом телефона
         const orderButtons = document.querySelectorAll('.order-button');
         orderButtons.forEach(btn => {
             btn.addEventListener('click', async (e) => {
@@ -197,7 +174,6 @@ $mysqli->close();
                         return;
                     }
                 }
-                // Отправка заявки на сервер
                 const formData = new FormData();
                 formData.append('car_id', carId);
                 formData.append('phone', phone);

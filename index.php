@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Подключение к БД
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = '21074';
@@ -13,7 +12,6 @@ if ($mysqli->connect_error) {
 }
 $mysqli->set_charset('utf8');
 
-// Получаем все модели и для каждой – первое изображение из таблицы Цвет модели
 $sql = "
     SELECT 
         m.`ID модели`,
@@ -99,7 +97,7 @@ $mysqli->close();
             <div class="text--gray">
                 Записывайте свой автомобиль на техническое обслуживание с удобством - в личном кабинете
             </div>
-            <a href="profile.php" class="button--red">Войти</a>
+            <a href="handlers/checkLogin.php" class="button--red">Войти</a>
         </div>
     </section>
     <?php include 'footer.php'; ?>

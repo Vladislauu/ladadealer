@@ -1,13 +1,11 @@
 <?php
 session_start();
 
-// Параметры подключения к БД
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = '21074';
 $db_name = 'ladadealer';
 
-// Подключение к MySQL
 $mysqli = new mysqli($db_host, $db_user, $db_pass, $db_name);
 if ($mysqli->connect_error) {
     die('Ошибка подключения к БД: ' . $mysqli->connect_error);
@@ -31,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     file_put_contents('debug.log', $city, FILE_APPEND);
     file_put_contents('debug.log', $name, FILE_APPEND);
 
-    // Валидация полей
     $errors = [];
     if (empty($phone)) $errors[] = 'Телефон обязателен';
     if (empty($lastname)) $errors[] = 'Фамилия обязательна';
@@ -41,20 +38,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (strlen($password) < 4) $errors[] = 'Пароль должен содержать минимум 4 символа';
     if (!ctype_digit($phone)) $errors[] = 'Телефон должен состоять только из цифр';
 
-    // Если ошибок нет – пробуем вставить в БД
     if (empty($errors)) {
 
-        // Если отчество пустое – передаём NULL в БД
         $fatherDb = empty($father) ? null : $father;
 
-        // Подготовленный запрос (ID пользователя генерируется автоматически при AUTO_INCREMENT)
         $sql = "INSERT INTO `Пользователь` (`Номер телефона`, `Пароль`, `Фамилия`, `Имя`, `Отчество`, `Город`, `ID роли`)
                 VALUES (?, ?, ?, ?, ?, ?, 1)";
-
         $stmt = $mysqli->prepare($sql);
         if ($stmt) {
             $stmt->bind_param('isssss', $phone, $password, $lastname, $name, $fatherDb, $city);
             if ($stmt->execute()) {
+
+                $sql = "SELECT `ID пользователя` FROM `Пользователь` WHERE `Номер телефона` = ?";
+                $stmt = $mysqli->prepare($sql);
+                $stmt->bind_param('i',$phone);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                $userId = $row['ID пользователя'];
                 // Успешная регистрация
                 $_SESSION['user_id'] = $userId;
                 $_SESSION['user_phone'] = $phone;
@@ -67,7 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: ../profile.php');
                 exit;
             } else {
-                // Ошибка выполнения запроса – проверяем код дубликата (1062)
                 if ($mysqli->errno === 1062) {
                     $errors[] = 'Номер телефона уже зарегистрирован';
                 } else {
@@ -80,7 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Если есть ошибки – возвращаем на страницу регистрации
     if (!empty($errors)) {
         $errorString = implode(',', $errors);
         header("Location: ../index.php?error=" . urlencode($errorString));

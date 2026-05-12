@@ -1,6 +1,8 @@
 <?php
 session_start();
 if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) {
+    $logMessage = "here";
+    file_put_contents('debug.log', $logMessage, FILE_APPEND);
     header('Location: ../profile.php');
     exit;
 }

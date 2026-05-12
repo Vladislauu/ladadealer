@@ -26,7 +26,6 @@ $mysqli->set_charset('utf8');
         exit;
     }
 
-    // Проверяем, существует ли автомобиль
     $checkStmt = $mysqli->prepare("SELECT 1 FROM `Автомобиль в наличии` WHERE `ID автомобиля` = ?");
     $checkStmt->bind_param('i', $carId);
     $checkStmt->execute();
@@ -38,7 +37,6 @@ $mysqli->set_charset('utf8');
         exit;
     }
 
-    // Вставляем заявку (дата истечения брони – NULL, по умолчанию)
     $stmt = $mysqli->prepare("INSERT INTO `Заявка на автомобиль` (`ID автомобиля`, `Контактный номер телефона`, `Дата истечения брони`) VALUES (?, ?, NULL)");
     $stmt->bind_param('is', $carId, $phone);
     if ($stmt->execute()) {

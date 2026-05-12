@@ -1,9 +1,10 @@
 <?php
 session_start();
-
+$logMessage = "hereProfile";
+    file_put_contents('debug.log', $logMessage, FILE_APPEND);
 // Проверка авторизации
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../index.php');
+    header('Location: index.php');
     exit;
 }
 
@@ -43,13 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $mysqli->prepare("INSERT INTO `Запись на сервис` (`ID ЛТС`, `ID пользователя`, `ID статуса`, `Дата заявки`, `Описание`, `Дата записи`) VALUES (?, ?, ?, ?, ?, ?)");
             $stmt->bind_param('iiisss', $lts_id, $userId, $status_id, $date_app, $description, $date_record);
             if ($stmt->execute()) {
-                $_SESSION['message'] = '✅ Заявка на ТО оформлена. Вам перезвонят для уточнения деталей.';
+                $_SESSION['message'] = 'Заявка на ТО оформлена. Вам перезвонят для уточнения деталей.';
             } else {
-                $_SESSION['message'] = '❌ Ошибка при создании заявки: ' . $mysqli->error;
+                $_SESSION['message'] = 'Ошибка при создании заявки: ' . $mysqli->error;
             }
             $stmt->close();
         } else {
-            $_SESSION['message'] = '❌ Некорректные данные или автомобиль не принадлежит вам.';
+            $_SESSION['message'] = 'Некорректные данные или автомобиль не принадлежит вам.';
         }
         header('Location: profile.php');
         exit;
@@ -68,13 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $mysqli->prepare("DELETE FROM `Личный автомобиль` WHERE `ID ЛТС` = ?");
             $stmt->bind_param('i', $lts_id);
             if ($stmt->execute()) {
-                $_SESSION['message'] = '🚗 Автомобиль удалён из вашего списка.';
+                $_SESSION['message'] = 'Автомобиль удалён из вашего списка.';
             } else {
-                $_SESSION['message'] = '❌ Ошибка при удалении.';
+                $_SESSION['message'] = 'Ошибка при удалении.';
             }
             $stmt->close();
         } else {
-            $_SESSION['message'] = '❌ Автомобиль не найден или не принадлежит вам.';
+            $_SESSION['message'] = 'Автомобиль не найден или не принадлежит вам.';
         }
         header('Location: profile.php');
         exit;
@@ -210,7 +211,6 @@ $mysqli->close();
         <button class="button--red" type="submit">Выход</button>
     </form>
 
-    <!-- Ближайшие записи на обслуживание -->
     <section class="car__maintence">
         <span>Ближайшие записи на техническое обслуживание</span>
         <ul class="maintence">
@@ -245,7 +245,6 @@ $mysqli->close();
                         <div>
                             <span>Пробег: <?= number_format($car['Пробег'], 0, ',', ' ') ?> км</span>
                             <span>ТО: <?= number_format($car['Пробег последнего ТО'], 0, ',', ' ') ?> км</span>
-                            <span>Оценочная стоимость: —</span>
                         </div>
                         <div>
                             <button class="button--red btn-service" data-lts-id="<?= $car['ID ЛТС'] ?>">Запись на ТО</button>

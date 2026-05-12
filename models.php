@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Подключение к БД
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = '21074';
@@ -13,9 +12,6 @@ if ($mysqli->connect_error) {
 }
 $mysqli->set_charset('utf8');
 
-// Запрос: все модели, их минимальная стоимость (из комплектаций) и первое изображение (из таблицы цветов)
-// Если в таблице `Модель` нет колонки `Описание`, выполните ALTER TABLE:
-// ALTER TABLE `Модель` ADD COLUMN `Описание` TEXT NULL DEFAULT NULL;
 $sql = "
     SELECT 
         m.`ID модели`,
@@ -65,7 +61,7 @@ $mysqli->close();
                 $modelName = htmlspecialchars($model['Наименование модели']);
                 $description = !empty($model['Описание']) ? htmlspecialchars($model['Описание']) : 'Описание отсутствует';
                 $minPrice = (int)$model['min_price'];
-                $monthlyPayment = round($minPrice / 100); // 1% от стоимости (как в примере)
+                $monthlyPayment = round($minPrice / 100);
                 $image = htmlspecialchars($model['image_path']);
             ?>
                 <div class="models__card">
@@ -73,12 +69,16 @@ $mysqli->close();
                         <?= $modelName ?>
                     </div>
                     <div class="text--gray">
-                        <?= $description ?>
                     </div>
                     <img src="<?= $image ?>" alt="Изображение <?= $modelName ?>" class="image--scaling">
+<<<<<<< HEAD
+=======
+                    <div class="text--gray">
+                        <?= $description ?>
+                    </div>
+>>>>>>> 7a939858b02f10ee5b0fd2aa0eab66814dd203fc
                     <div class="text--gray">
                         от <?= number_format($minPrice, 0, ',', ' ') ?> ₽<br>
-                        <?= number_format($monthlyPayment, 0, ',', ' ') ?> ₽ / мес
                     </div>
                     <div class="models__options">
                         <a href="configurator.php?car=<?= urlencode($modelName) ?>" class="button--red">Конфигуратор</a>

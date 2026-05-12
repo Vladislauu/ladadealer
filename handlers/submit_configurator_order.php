@@ -17,7 +17,10 @@ $mysqli->set_charset('utf8');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $versionId = (int)$_POST['version_id'];
     $colorId = (int)$_POST['color_id'];
-    $phone = preg_replace('/\D/', '', $_POST['phone']); // только цифры
+    $phone = "";
+    if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) $phone = $_SESSION['user_phone'];
+    else $phone = preg_replace('/\D/', '', $_POST['phone']); // только цифры
+    //exit;
 
     if (!$versionId || !$colorId || !$phone) {
         echo json_encode(['success' => false, 'error' => 'Не все данные заполнены']);

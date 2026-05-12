@@ -14,9 +14,12 @@ if ($mysqli->connect_error) {
 }
 $mysqli->set_charset('utf8');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $carId = (int)$_POST['car_id'];
-    $phone = preg_replace('/\D/', '', $_POST['phone']);
+    $phone = "";
+    if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) $phone = $_SESSION['user_phone'];
+    else $phone = preg_replace('/\D/', '', $_POST['phone']); // только цифры
+    //exit;
 
     if (!$carId || !$phone) {
         echo json_encode(['success' => false, 'error' => 'Не все данные заполнены']);

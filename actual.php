@@ -186,10 +186,16 @@ $mysqli->close();
         orderButtons.forEach(btn => {
             btn.addEventListener('click', async (e) => {
                 const carId = btn.getAttribute('data-car-id');
-                const phone = prompt('Введите ваш номер телефона (только цифры):', '');
-                if (!phone || !/^\d+$/.test(phone)) {
-                    alert('Необходимо ввести корректный номер телефона (только цифры).');
-                    return;
+                let getphone = await fetch('handlers/checkAuth.php', {method : 'POST'})
+                let phone = await getphone.json();
+                if (!phone.phone) 
+                {
+                    phone = prompt('Введите ваш контактный номер телефона (только цифры):', '');
+                    if (!phone || !/^\d+$/.test(phone)) 
+                    {
+                        alert('Необходимо ввести корректный номер телефона (только цифры).');
+                        return;
+                    }
                 }
                 // Отправка заявки на сервер
                 const formData = new FormData();
